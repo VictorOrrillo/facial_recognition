@@ -2,6 +2,8 @@ import 'package:facial_recognition/page/face_recognition/camera_page.dart';
 import 'package:facial_recognition/utils/local_db.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/utils.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -12,7 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
-    print(LocalDB.getUser().name);
+    printIfDebug(LocalDB.getUser().name);
     super.initState();
   }
 
@@ -41,12 +43,14 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 24),
             buildButton(
               text: 'Login',
-              icon: Icon.Login,
+              icon: Icons.login,
               onClicked: () async {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FaceScanScreen(user: LocalDB.getUser()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FaceScanScreen(
+                          user: LocalDB.getUser(),
+                        )));
               },
             ),
           ],
@@ -58,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildButton({
     required String text,
     required IconData icon,
-    required VoidCallback onCLicked,
+    required VoidCallback onClicked,
   }) =>
       ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
@@ -67,8 +71,8 @@ class _LoginPageState extends State<LoginPage> {
         icon: Icon(icon, size: 26),
         label: Text(
           text,
-          style: const TextStyle(fontSize :20),
+          style: const TextStyle(fontSize: 20),
         ),
-        onPressed: onCLicked,
+        onPressed: onClicked,
       );
 }

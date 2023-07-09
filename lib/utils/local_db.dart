@@ -2,7 +2,7 @@ import 'package:facial_recognition/models/user.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveBoxes {
-  static const userDetails = "user_datails";
+  static const userDetails = "user_details";
 
   static Box userDetailsBox() => Hive.box(userDetails);
 
@@ -19,11 +19,11 @@ class LocalDB {
   static User getUser() => User.fromJson(HiveBoxes.userDetailsBox().toMap());
 
   static String getUserName() =>
-      HiveBoxes().userDetailsBox().toMap()[User.nameKey];
+      HiveBoxes.userDetailsBox().toMap()[User.nameKey];
 
   static String getUserArray() =>
-      HiveBoxes().userDetailsBox().toMap()[User.arrayKey];
+      HiveBoxes.userDetailsBox().toMap()[User.arrayKey];
 
-  static setUsersDetails(User user) =>
-      HiveBoxes().userDetailsBox().putAll(user.toJson());
+  static setUserDetails(User user) =>
+      HiveBoxes.userDetailsBox().putAll(user.toJson());
 }
